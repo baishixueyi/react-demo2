@@ -1,17 +1,87 @@
-import React from 'react';
+import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+// function User(props){
+// return <h1>hello,{props.name}</h1>
+// }
+// function App(){
+//   return (
+//     <div>
+//       <User name='a'/>
+//       <User name='b'/>
+//       <User name='c'/>
+//       <User name='d'/>
+//     </div>
+//   )
+// }
 
+class Counter extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      count0:0,
+      count1:0,
+      count2:0,
+      count3:0,
+      count4:0
+    }
+  }
+  render(){
+    console.log('render')
+    return (
+      <div>
+        <div>{this.state.count0}</div>
+        <div>{this.state.count1}<button onClick={this.onPlus1.bind(this)}>plus1</button></div>
+        <div>{this.state.count2}<button onClick={this.onPlus2.bind(this)}>plus2</button></div>
+        <div>{this.state.count3}<button onClick={this.onPlus3.bind(this)}>plus3</button></div>
+        <div>{this.state.count4}<button id="btn4">plus4</button></div>
+      </div>
+    )
+  }
+  componentDidMount(){
+    this.setState({
+      count0:this.state.count0 + 1
+    })
+    this.setState({
+      count0:this.state.count0 + 1
+    })
+    document.querySelector('#btn4').onclick = ()=>{
+      this.setState({
+        count4:this.state.count4 + 1
+      })
+      this.setState({
+        count4:this.state.count4 + 1
+      })
+  }
+  }
+  onPlus1(){
+      this.setState({
+        count1:this.state.count1 + 1
+      })
+      this.setState({
+        count1:this.state.count1 + 1
+      })
+  }
+  onPlus2(){
+    this.setState(state => {
+      return { count2:state.count2 + 1}
+    })
+    this.setState(state => {
+      return {count2:state.count2 + 1}
+    })
+  }
+  onPlus3(){
+    setTimeout(()=>{
+      this.setState({
+        count3:this.state.count3 + 1
+      })
+      this.setState({
+        count3:this.state.count3 + 1
+      })
+    })
+  }
+
+}
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <Counter />,
   document.getElementById('root')
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
